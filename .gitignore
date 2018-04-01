@@ -3,7 +3,5 @@ composer.lock
 *.log
 thinkphp 
 runtime/* 
-
 runtime/
- 
 runtime/temp/

@@ -134,9 +134,9 @@ return [
 
     // 视图输出字符串内容替换
     'view_replace_str'       => [
-        '__INDEX__'=>'http://localhost/project1/project1/public/static/index',
-         '__IUrl__'=>'http://localhost/project1/project1/',
-         '__ADMIN__' => 'http://localhost/project1/project1/public/static/admin',
+        '__INDEX__'=>'http://127.0.0.1/project1/project1/public/static/index',
+         '__IUrl__'=>'http://127.0.0.1/project1/project1/',
+         '__ADMIN__' => 'http://127.0.0.1/project1/project1/public/static/admin',
     ],
     // 默认跳转页面对应的模板文件
     'dispatch_success_tmpl'  => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',

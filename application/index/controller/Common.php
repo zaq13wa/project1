@@ -8,39 +8,8 @@ class Common extends Controller
         if(!session('user_id') || !session('username')){
            $this->error('您尚未登录系统',url('login/index')); 
         }
-
-        // $deadline = db('conf')->where('enname','BMdeadline')->find();
+        
         $userid = session('user_id');
-        //dump($userid);die;
-        $school = db('team')->field('school')->where('user_id',$userid)->find();
-          //dump($school);die;
-        $admin = model('Admin')->where('school',$school['school'])->field('time')->find();
-           //dump(time());
-           //dump($admin->toArray());die;
-        // if（!$school）{
-        //     $this->error('登录异常',url('login/index')); 
-        // }
-
-    	//当前位置
-        if(input('cateid')){
-            $this->getPos(input('cateid'));
-        }
-        if(input('artid')){
-            $articles=db('article')->field('cateid')->find(input('artid'));
-            $cateid=$articles['cateid'];
-            $this->getPos($cateid);
-        }
-        //网站配置项
-    	$this->getConf();
-        //网站栏目导航
-        $this->getNavCates();
-        //底部导航信息
-        $cateM=new \app\index\model\Cate();
-        $recBottom=$cateM->getRecBottom();
-        $this->assign('recBottom',$recBottom);
-        // $this->assign('deadline',$deadline);
-        $this->assign('bmdeadline',$admin->toArray());
-        $this->assign('school',$school);
     }
 
 

@@ -25,7 +25,7 @@
 
    
 <header class="am-topbar am-topbar-inverse admin-header">
-  <div class="am-topbar-brand"> <span  class="nav-titlle">浙江省大学生环境生态科技创新大赛
+  <div class="am-topbar-brand"> <span  class="nav-titlle">浙江省农林大学作业提交系统
 </span> </div>
   
   <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
@@ -72,8 +72,26 @@
                                  <div class="am-form-group xa-sm-am-form-group">
                                     <label for="user-name" class="am-u-md-3 am-u-sm-12 am-form-label">用户名</label>
                                     <div class="am-u-md-9 am-u-sm-12">
-                                        <input type="text" name="name1" id="user-name" placeholder="设置后不可更改，10字以内">
+                                        <input type="text" name="name" id="user-name" placeholder="设置后不可更改，请填写真实姓名">
 <!--                                        <small>输入你的名字，让我们记住你。</small>-->
+                                    </div>
+                                </div>
+                                <div class="am-form-group xa-sm-am-form-group">
+                                    <label for="user-name" class="am-u-md-3 am-u-sm-12 am-form-label">学号</label>
+                                    <div class="am-u-md-9 am-u-sm-12">
+                                        <input type="text" name="stuid" id="stuid" placeholder="请填写真实学号">
+<!--                                        <small>输入你的名字，让我们记住你。</small>-->
+                                    </div>
+                                </div>
+                                  <div class="am-form-group xa-sm-am-form-group">
+                                    <label for="team-name" class="am-u-md-3 am-u-sm-12 am-form-label">性别</label>
+                                   
+                                       <div class="am-u-md-9 am-u-sm-12">
+                           <select  name="sex" id="sex" >
+                           <option selected="selected" value="0">--选择性别--</option>
+                          <option  value="男">男</option>
+                          <option  value="女">女</option>
+                            </select>
                                     </div>
                                 </div>
                                  <div class="am-form-group xa-sm-am-form-group">
@@ -90,15 +108,42 @@
 <!--                                        <small>输入你的名字，让我们记住你。</small>-->
                                     </div>
                                 </div>
-                                <div class="am-form-group xa-sm-am-form-group">
-                                    <label for="team-name" class="am-u-md-3 am-u-sm-12 am-form-label">团队名称</label>
+                                 <div class="am-form-group xa-sm-am-form-group">
+                                    <label for="project-name" class="am-u-md-3 am-u-sm-12 am-form-label">是否教师</label>
+                                     <div class="am-u-md-9 am-u-sm-12 ">
+                                    <input type="checkbox" id='teach' value="1" onchange="t()" />
+                                   </div>
+                                </div>
+                                      
+                                      <script type="text/javascript"> 
+                                          var x;
+                                          function t(){
+                                            if($('#teach').prop('checked'))
+                                                {
+                                                    x=$("#x").html();
+                                                    $('#x').html("");
+                                                }
+                                                else
+                                                {
+                                                 $("#x").html(x);
+
+                                                }
+                                               console.log();
+                                          }
+                                      </script>
+                                      <x id='x'>
+                                <div class="am-form-group xa-sm-am-form-group" >
+                                    <label for="team-name" class="am-u-md-3 am-u-sm-12 am-form-label">班级</label>
                                     <div class="am-u-md-9 am-u-sm-12">
-                                        <input type="text" name="name2" id="team-name" placeholder="团队名称请在10字以内">
-<!--                                        <small>输入你的名字，让我们记住你。</small>-->
+                                         <select  name="cid" id='class'>
+                              <option selected="selected" value="-1" >--选择班级--</option>
+                              {volist name='class' id='c'}
+                                 <option  value="{$c.Id}">{$c.name}</option>
+                              {/volist}
+                               </select>
                                     </div>
                                 </div>
-
-                                 
+                               </x>
 
 
 
@@ -106,7 +151,7 @@
                                 <div class="am-form-group" style="text-align: center;">
                                 
 
-                                 <button class="btn btn-info am-radius xa-sm-btn" type="submit">下一步</button>
+                                 <button class="btn btn-info am-radius xa-sm-btn" type="submit">提交</button>
                                 </div>
 
                             </form>

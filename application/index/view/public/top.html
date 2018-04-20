@@ -1,7 +1,7 @@
 
 <header class="am-topbar am-topbar-inverse admin-header">
   <div class="am-topbar-brand"> 
-    <span  class="nav-titlle xa-sm-nav-titlle" >浙江省大学生环境生态科技创新大赛</span> 
+    <span  class="nav-titlle xa-sm-nav-titlle" >浙江省农林大学作业提交系统</span> 
   </div>
   <div class="am-icon-list tpl-header-nav-hover-ico am-fl am-margin-right"> </div>
   <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
@@ -9,7 +9,7 @@
     <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list tpl-header-list">
       
       <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle> 
-        <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">dasds&nbsp;&nbsp;</a>
+        <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">{$Request.session.class==0 ? "教师":"学生"}&nbsp;&nbsp;</a>
       </li>
       <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle> 
           <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;"> 

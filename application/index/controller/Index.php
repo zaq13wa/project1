@@ -9,8 +9,14 @@ class Index extends Common
 {
      public function index()
      {
-     	$a= Model('Project')->get(1)->file[0]->project;
-        dump($a);die;
+     	//$a= Model('Project')->get(1)->file[0]->project;
+     //  
+     	$u=Model('User')->get(2);
+     	unset($u['password']);
+     	$u->group;
+     	$u->groupt;
+     	dump($u->ToArray());die;
+     	$this->assign('user',$u);
         return view();
      }
 

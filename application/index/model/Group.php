@@ -15,5 +15,17 @@ class Group extends Model
     {
         return $this->hasMany('Groupwork','cid');
     }
+    public function usergroup()
+    {
+        return $this->hasMany('Usergroup','gid',"id");
+    }
+    public function course()
+    {
+        return $this->belongsTo('Group','pid',"id");
+    }
+    public function child()
+    {
+        return $this->hasMany('Group','Id',"pid");
+    }
 }
 ?>

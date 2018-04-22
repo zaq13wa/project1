@@ -31,9 +31,9 @@ class User extends Model
 
     }
 
-    public function group()//学生班级
+    public function usergroup()//学生班级
     {
-        return $this->hasOne('Group','id',"cid");
+        return $this->hasMany('Usergroup','uid',"user_id");
     }
      public function file()//学生文件
     {

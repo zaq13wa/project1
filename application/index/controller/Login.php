@@ -51,11 +51,12 @@ class Login extends Controller
      if(request()->isPost()){
         $data=input('post.');//dump($data);die;
         $data['name']!=""?:$this->error("请输入用户名");
+         $data['phone']!=""?:$this->error("请输入联系方式");
+        isset($data['sex'])?:$this->error('请选择性别');
         $data['password']= $data['password']==$data['password1'] ? Md5($data['password']):$this->error("密码不一致");
-        $data['cid']==-1?$this->error("请选择班级"):"";
         unset($data['password1']);
         $u=new User();
-        $u->save($data)?$this->success('注册成功'):$this->error("操作失败");
+        $u->save($data)?$this->success('注册成功','index'):$this->error("操作失败");
      }
      $this->assign('class',$class);
             return view();

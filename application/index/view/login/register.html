@@ -87,66 +87,43 @@
                                     <label for="team-name" class="am-u-md-3 am-u-sm-12 am-form-label">性别</label>
                                    
                                        <div class="am-u-md-9 am-u-sm-12">
-                           <select  name="sex" id="sex" >
-                           <option selected="selected" value="0">--选择性别--</option>
+                                          男<input type="radio" name='sex' id="nan" value="男" /> 女<input type="radio" id="nv" name='sex' value="女" />
+                         <!--   <select  name="sex" id="sex" >
+                           <option selected="selected" value="0">选择性别</option>
                           <option  value="男">男</option>
                           <option  value="女">女</option>
-                            </select>
+                            </select> -->
+                                    </div>
+                                </div> 
+                                <div class="am-form-group xa-sm-am-form-group">
+                                    <label for="project-name" class="am-u-md-3 am-u-sm-12 am-form-label">联系方式</label>
+                                    <div class="am-u-md-9 am-u-sm-12">
+                                        <input type="number" name="phone" id="" maxlength="16" placeholder="请填写固定电话或手机号码">
+<!--                                        <small>输入你的名字，让我们记住你。</small>-->
                                     </div>
                                 </div>
                                  <div class="am-form-group xa-sm-am-form-group">
                                     <label for="project-name" class="am-u-md-3 am-u-sm-12 am-form-label">密码</label>
                                     <div class="am-u-md-9 am-u-sm-12">
-                                        <input type="password" name="password" id="password-name" maxlength="16" placeholder="长度4~16个字符，支持大小写字母，不可有空格  ">
+                                        <input type="password" name="password" id="" maxlength="16" placeholder="长度4~16个字符，支持大小写字母，不可有空格  ">
 <!--                                        <small>输入你的名字，让我们记住你。</small>-->
                                     </div>
                                 </div>
                                 <div class="am-form-group xa-sm-am-form-group">
                                     <label for="project-name" class="am-u-md-3 am-u-sm-12 am-form-label">确认密码</label>
                                     <div class="am-u-md-9 am-u-sm-12 ">
-                                        <input type="password" name="password1" id="password-name" maxlength="16" placeholder="请再次输入密码">
+                                        <input type="password" name="password1" id="" maxlength="16" placeholder="请再次输入密码">
 <!--                                        <small>输入你的名字，让我们记住你。</small>-->
                                     </div>
                                 </div>
                                  <div class="am-form-group xa-sm-am-form-group">
                                     <label for="project-name" class="am-u-md-3 am-u-sm-12 am-form-label">是否教师</label>
                                      <div class="am-u-md-9 am-u-sm-12 ">
-                                    <input type="checkbox" id='teach' value="1" onchange="t()" />
+                                    <input type="checkbox" id='cid' name="cid" value="1"/>
                                    </div>
                                 </div>
                                       
-                                      <script type="text/javascript"> 
-                                          var x;
-                                          function t(){
-                                            if($('#teach').prop('checked'))
-                                                {
-                                                    x=$("#x").html();
-                                                    $('#x').html("");
-                                                }
-                                                else
-                                                {
-                                                 $("#x").html(x);
-
-                                                }
-                                               console.log();
-                                          }
-                                      </script>
-                                      <x id='x'>
-                                <div class="am-form-group xa-sm-am-form-group" >
-                                    <label for="team-name" class="am-u-md-3 am-u-sm-12 am-form-label">班级</label>
-                                    <div class="am-u-md-9 am-u-sm-12">
-                                         <select  name="cid" id='class'>
-                              <option selected="selected" value="-1" >--选择班级--</option>
-                              {volist name='class' id='c'}
-                                 <option  value="{$c.Id}">{$c.name}</option>
-                              {/volist}
-                               </select>
-                                    </div>
-                                </div>
-                               </x>
-
-
-
+                                     
         
                                 <div class="am-form-group" style="text-align: center;">
                                 

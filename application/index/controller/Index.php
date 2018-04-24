@@ -9,40 +9,32 @@ class Index extends Common
 {
      public function index()
      {
-     	  $index=new IndexModel();
-        $newsres=$index->getindexnews(1);
-        //dump($newsres);
-        $newsdata=$newsres->toArray();
-        foreach($newsdata['data'] as &$n)
-        {
-            $n["article"]=str_replace("<p>"," ",$n["article"]);
-            $n["article"]= str_replace("</p>"," ",$n["article"]);
-        }
-        //dump($newsdata);die;
-        $newsrender=$newsres->render();
-        
-        $team=$index->getindexteam();
-        $team->member;
-        //dump($team);die;
-
-        $teamdata=$team->toArray();
-        //dump($teamdata );die;
-
-        $app = new approvalModel();
-        $userid = session('user_id');
-        //dump($userid);
-        $teamid = db('team')->field('team_id')->where('user_id',$userid)->find();
-        //dump($teamid);die;
-        $message = $app->where('team_id',$teamid['team_id'])->select();
-        //dump($message);die;
-        
-        $this->assign(array(
-               'newsdata' => $newsdata,
-               'newsrender' => $newsrender,
-               'teamdata'=>$teamdata,
-               'message' => $message
-          ));
-       //dump($newsrender);die;
+     	//$a= Model('Project')->get(1)->file[0]->project;
+     	$u=Model('User')->get(session('user_id'));
+     	unset($u['password']);
+          if(!$u['groups']=$u->groupt)
+          {
+             $u['groups']=$u->usergroup;
+             unset($u["usergroup"]);
+             foreach( $u['groups'] as $g){
+               $g['Id']=$g['group']['Id'];
+               $g["name"]=$g['group']['name'];
+               $g["leader"]=$g['group']['leader'];
+               $g['pid']=$g->group->course["name"];
+               $g['teacher']=$g->group->teacher['name'];
+               unset($g['group']);
+             }
+          }
+          else{
+             foreach( $u['groups'] as $g){
+              $g['pid']=$g->course['name'];
+              $g['teacher']=session('username');
+              unset($g['course']);
+             } 
+          }
+     	   unset($u['groupt']);
+     //	dump($u->ToArray());die;
+     	$this->assign('user',$u->ToArray());
         return view();
      }
 

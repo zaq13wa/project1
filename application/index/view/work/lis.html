@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>浙江省大学生环境生态科技创新大赛</title>
+<meta name="description" content="这是一个 index 页面">
+<meta name="keywords" content="index">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="icon" type="image/png" href="__INDEX__//i/favicon.png">
+<link rel="apple-touch-icon-precomposed" href="__INDEX__//i/app-icon72x72@2x.png">
+<meta name="apple-mobile-web-app-title" content="Amaze UI" />
+<link rel="stylesheet" href="__INDEX__/css/bootstrap.css" />
+<link rel="stylesheet" href="__INDEX__/css/amazeui.min.css" />
+<link rel="stylesheet" href="__INDEX__/css/admin.css">
+<link rel="stylesheet" href="__INDEX__/css/app.css">
+<link rel="stylesheet" href="__INDEX__/font-awesome.css" >
+<script src="__INDEX__/js/echarts.min.js"></script>
+<script src="__INDEX__/js/jquery.min.js"></script>
+<script src="__INDEX__/layer/layer.js"></script>
+</head>
+
+<body data-type="index">
+
+    <!--引用头部-->
+    {include file="public/top"} 
+   <!--/引用头部-->
+
+   <div class="tpl-page-container tpl-page-header-fixed">
+    <!--引用侧边栏-->
+    {include file="public/left"} 
+    <!--/引用侧边栏-->
+
+
+
+        <div class="tpl-content-wrapper">
+            <ol class="am-breadcrumb">
+                <li><a href="#" class="am-icon-pencil-square-o">作业管理</a></li>
+                
+            </ol>
+            <div class="tpl-portlet-components">
+                <div class="portlet-title">
+                    <div class="caption font-green bold">
+                        作业列表
+                    </div>
+                    <div class="tpl-portlet-input tpl-fz-ml">
+                        <div class="portlet-input input-small input-inline">
+                            <div class="input-icon right">
+                                <i class="am-icon-search"></i>
+                                <input type="text" class="form-control form-control-solid" placeholder="搜索..."> </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="tpl-block ">
+
+                    <div class="am-g tpl-amazeui-form">
+
+
+                        <div class="am-u-sm-12 am-u-md-9">
+                                <table class="am-table am-table-striped am-table-hover table-main">
+                            <thead>
+                                <tr>
+
+
+                                    <th class="table-title">编号</th>
+                                    <th class="table-type am-hide-sm-only">作业题目</th>
+                                    <th class="table-type am-hide-sm-only">班级</th>
+                                    <th class="table-type am-hide-sm-only">指导老师</th>
+                                    <th class="table-date ">截止时间</th>
+                                    <th class="table-set">操作</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                               {volist name="list" id='l'}
+                                <tr >
+                                    <td class="">{$l.project.Id}</td>
+                                    <td class="am-hide-sm-only" id="p{$l.project.Id}">{$l.project.title}</td>
+                                    <td class="">{$l.group}</td>
+                                    <td >{$l.teacher}</td>
+                                        <td >{$l.project.time}</td>
+                                    <td>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs xa-btn-group">
+                                               
+                                                 <a class="am-btn am-btn-default am-btn-xs am-text-secondary" href="javascript:;" onclick="t({$l.project.Id})"><span class="am-icon-pencil-square-o"></span> 查看</a>
+                                              
+                                               <!-- <a class="am-btn am-btn-default am-btn-xs am-text-secondary" href=""><span class="am-icon-download"></span> 下载</a>
+                                                <a class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</a>-->
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {/volist}
+                            </tbody>
+                        </table>
+                        <script type="text/javascript">
+                                              function t(i){
+                                                  layer.open({type: 2, title: '作业上传', shadeClose: true,shade: false, maxmin: true,  area: ['893px', '600px'], content: '{:url("work/upload")}?pid='+i+'&uid={$Request.session.user_id}' });
+                                              }
+                        </script>
+                                <div class="am-form-group" style="text-align: center;">
+                                 <br>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+    <script  src="__INDEX__/js/distpicker.data.js"></script> 
+    <script  src="__INDEX__/js/distpicker.js"></script> 
+    <script src="__INDEX__/js/jquery.min.js"></script>
+    <script src="__INDEX__/js/amazeui.min.js"></script>
+    <script src="__INDEX__/js/app.js"></script>
+    <script src="__INDEX__/js/bootstrap.js"></script>   
+    <script src="__INDEX__/js/fileinput.js"></script>
+</body>
+
+</html>

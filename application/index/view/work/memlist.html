@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>浙江省大学生环境生态科技创新大赛</title>
+<meta name="description" content="这是一个 index 页面">
+<meta name="keywords" content="index">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="icon" type="image/png" href="__INDEX__//i/favicon.png">
+<link rel="apple-touch-icon-precomposed" href="__INDEX__//i/app-icon72x72@2x.png">
+<meta name="apple-mobile-web-app-title" content="Amaze UI" />
+<link rel="stylesheet" href="__INDEX__/css/bootstrap.css" />
+<link rel="stylesheet" href="__INDEX__/css/amazeui.min.css" />
+<link rel="stylesheet" href="__INDEX__/css/admin.css">
+<link rel="stylesheet" href="__INDEX__/css/app.css">
+<link rel="stylesheet" href="__INDEX__/font-awesome.css" >
+<script src="__INDEX__/js/echarts.min.js"></script>
+</head>
+<body data-type="index">
+   <div class="tpl-page-container tpl-page-header-fixed">
+        <div class="tpl-content-wrapper">
+            <div class="tpl-portlet-components">
+                <div class="portlet-title">
+                    <div class="caption font-green bold">
+                    {$p.title}
+                    </div>
+                   <div class="tpl-portlet-input tpl-fz-ml">
+                        <div class="portlet-input input-small input-inline">
+                               截止：{$p.time}
+                        </div>
+                    </div>
+                    
+                    <div class="tpl-portlet-input tpl-fz-ml">
+                        <div class="portlet-input input-small input-inline">
+                            <div class="caption font-green">
+                              </div>
+                        </div>
+                    </div>
+                </div>
+               {$p.text}
+                <div class="am-u-sm-12 am-u-md-9">
+                <div class="caption font-green bold">
+                   已提交名单
+                    </div>
+                                <table class="am-table am-table-striped am-table-hover table-main">
+                            <thead>
+                                <tr>
+                                    <th class="table-set">全选 <input type="checkbox" id='ac' onclick="c()"></th>
+                                    <th class="table-title">编号</th>
+                                    <th class="table-type am-hide-sm-only">姓名</th>
+                                    <th class="table-type am-hide-sm-only">提交时间</th>
+                                    <th class="table-set">操作</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                               {volist name="file" id='f' key='k'}
+                                <tr >
+                                <td> <input id="c{$k}" type="checkbox"></td>
+                                    <td  id='a{$k}'>{$f.Id}</td>
+                                    <td class="am-hide-sm-only" id="">{$f.uid}</td>
+                                    <td>{$f.time}</td>
+                                    <td>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs xa-btn-group">
+                                               
+                                                <a class="am-btn am-btn-default am-btn-xs am-text-secondary" href="__IUrl__{$f.thumb}" download="{$p.title}_{$f.uid}" ><span class="am-icon-download"></span> 下载</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {/volist}
+                                  </tbody>
+                                <script type="text/javascript">
+                                var j=0;
+                                  function c(){
+                                       var i=0;j++;
+                                      // console.log(j);
+                                       
+                                       if(j%2!=0)
+                                       {
+                                            $("#ac").prop('checked',true);
+                                            for(i=0;i<={$k};i++)
+                                            {
+                                              $('#c'+i).prop('checked',true);
+                                            }
+                                       }
+                                       else
+                                       {
+                                        $("#ac").prop('checked',false);
+
+                                           for(i=0;i<={$k};i++)
+                                            {
+                                              $('#c'+i).prop('checked',false);
+                                            }
+                                       }
+                                  }
+                                  function down(){
+                                    var s="";
+                                     for(i=0;i<={$k};i++)
+                                            {
+                                             //
+                                             if($('#c'+i).prop('checked'))
+                                              {
+                                                if(i=={$k})s+=$('#a'+i).text();
+                                                else s+=$('#a'+i).text()+",";
+                                              }
+                                              
+                                            }
+                                  // console.log(s);
+                                            var json=$.ajax({
+                                               type: "GET",
+                                               dataType: 'json',
+                                            url: "{:url('work/zip')}?id="+s+"&pid={$p.Id}",
+                                            data: "",
+                                          timeout: 3000,
+                                           contentType: "application/json;utf-8",
+                                          success: function(msg) {
+                                                 console.log(msg);
+                                                   }
+                                                });
+                                  }
+                                </script>
+                        </table>
+                                <div class="am-form-group" style="text-align: center;">
+                                   <div class="am-form-group" style="text-align: center;">
+                                 <br>
+                                 <button class="btn btn-default am-radius" onclick="down()" >批量下载</button>
+                                </div>
+                                </div>
+                        </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script  src="__INDEX__/js/distpicker.data.js"></script> 
+    <script  src="__INDEX__/js/distpicker.js"></script> 
+    <script src="__INDEX__/js/jquery.min.js"></script>
+    <script src="__INDEX__/js/amazeui.min.js"></script>
+    <script src="__INDEX__/js/app.js"></script>
+    <script src="__INDEX__/js/bootstrap.js"></script>   
+    <script src="__INDEX__/js/fileinput.js"></script>
+</body>
+
+</html>

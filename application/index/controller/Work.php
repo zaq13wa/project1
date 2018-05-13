@@ -50,7 +50,6 @@ class Work extends Common
         $u=$u->ToArray();
         $this->assign('list',$u['project']);
         return view();
-        return view();
      }
      public function upload()
      {
@@ -109,16 +108,21 @@ class Work extends Common
       $g=input('get.');
       $id=explode(',',$g['id']);
       $p=db('project')->where('Id',$g['pid'])->find();
-        
-        $filename = $p['title'];
+        $filename = $p['title'].".zip";
         $zip = new \ZipArchive;
-        $zip->open($filename,ZipArchive::CREATE);   //打开压缩包
+        $zip->open($filename,\ZIPARCHIVE::CREATE|\ZIPARCHIVE::OVERWRITE);   //打开压缩包
         foreach ($id as $i) {
           $f=db('file')->where('Id',$i)->find();
-          $path = $f['thumb'];
-          $zip->addFile($path,basename($path));   //向压缩包中添加文件
+          $path = str_replace("public/" ,'',$f['thumb']);
+          $zip->addFile($path,basename($path));   
         }
        $zip->close();
-      return $id;
+      return $filename;
+     }
+     function z(){
+        $za = new \ZipArchive;
+    $za->open('2.zip',\ZipArchive::CREATE|\ZipArchive::OVERWRITE);
+    $za->addFile('uploads/20180427/010ccb2de785c16ce4bd57f06f7870d3.bmp','1.bmp');
+    $za->close();
      }
 }

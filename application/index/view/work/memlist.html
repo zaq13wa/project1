@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="__INDEX__/font-awesome.css" >
 <script src="__INDEX__/js/echarts.min.js"></script>
 </head>
-<body data-type="index">
+<body id="d" data-type="index">
    <div class="tpl-page-container tpl-page-header-fixed">
         <div class="tpl-content-wrapper">
             <div class="tpl-portlet-components">
@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     
-                    <div class="tpl-portlet-input tpl-fz-ml">
+                    <div class=" tpl-portlet-input tpl-fz-ml">
                         <div class="portlet-input input-small input-inline">
                             <div class="caption font-green">
                               </div>
@@ -41,7 +41,7 @@
                     </div>
                 </div>
                {$p.text}
-                <div class="am-u-sm-12 am-u-md-9">
+                <div class="am-u-sm-12 am-u-md-12">
                 <div class="caption font-green bold">
                    已提交名单
                     </div>
@@ -120,6 +120,10 @@
                                            contentType: "application/json;utf-8",
                                           success: function(msg) {
                                                  console.log(msg);
+                                                 window.location.href="__IUrl__public/"+msg; 
+                                                 // $('#d').prepend('<a herf="__IUrl__public/'+msg+'" hidden="true" download="'+msg+'" id="hr"></a>');
+                                                 // console.log(document.getElementById("hr"));
+                                                 // document.getElementById("hr").click();
                                                    }
                                                 });
                                   }

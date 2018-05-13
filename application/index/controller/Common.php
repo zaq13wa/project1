@@ -45,5 +45,4 @@ class Common extends Controller
         $this->assign('posArr',$posArr);
     }
 
-
 }

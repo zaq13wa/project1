@@ -11,7 +11,7 @@ class File extends Model
                 $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
                 if($info){
                     // $thumb=ROOT_PATH . 'public' . DS . 'uploads'.'/'.$info->getExtension();
-                    $thumb= 'public' . DS .'uploads'.'/'.$info->getSaveName();
+                    $thumb= 'public/' .'uploads'.'/'.$info->getSaveName();
                     $article['thumb']=$thumb;
                 }
             }
@@ -29,7 +29,7 @@ class File extends Model
                 $info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
                 if($info){
                     // $thumb=ROOT_PATH . 'public' . DS . 'uploads'.'/'.$info->getExtension();
-                    $thumb= 'public' . DS .'uploads'.'/'.$info->getSaveName();
+                    $thumb= 'public/' .'uploads'.'/'.$info->getSaveName();
                     $article['thumb']=$thumb;
                 }
             }

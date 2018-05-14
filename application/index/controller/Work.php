@@ -30,7 +30,75 @@ class Work extends Common
      }
      public function create()
      {
-      
+       $u=Model('User')->get(session('user_id'));
+        $u->groupt;
+        foreach($u['groupt'] as $g)
+        {
+           $g->course;
+           $c[$g['course']['name']][]=$g->ToArray();
+          $c[$g['course']['name']]['course']= $g['course']['name'];
+        }
+        $u=$u->ToArray();
+       // dump($c);
+        if(request()->ispost())
+          {
+            $data=input('post.');
+            if(!isset($data['group']))
+            echo '<script>parent.layer.msg("请选择班级！");window.history.back();  </script>';
+            else{
+            $group=$data['group'];
+            $data['tid']=session('user_id');
+            $data['time']=date("Y-m-d");
+            unset($data['group']);
+            // dump($group);die;
+            $p=Model('project');
+            $p->save($data);
+            foreach($group as $g1)
+            {
+               db('groupwork')->insert(['cid'=>$g1,'pid'=>$p['Id']]);
+            }
+            echo '<script>var index = parent.layer.getFrameIndex(window.name);parent.layer.msg("创建作业成功！");parent.layer.close(index);</script>';
+           }
+          }
+        $this->assign('g',$c);
+        return view();
+     }
+     public function edit()
+     {
+      $pid=input('get.pid');
+     // dump($pid);
+      $p=Model('project')->get($pid);
+       $u=Model('User')->get(session('user_id'));
+        $u->groupt;
+        foreach($u['groupt'] as $g)
+        {
+           $g->course;
+           $c[$g['course']['name']][]=$g->ToArray();
+          $c[$g['course']['name']]['course']= $g['course']['name'];
+        }
+        $u=$u->ToArray();
+       // dump($c);
+        if(request()->ispost())
+          {
+            $data=input('post.');
+            if(!isset($data['group']))
+            echo '<script>parent.layer.msg("请选择班级！");window.history.back();  </script>';
+            else{
+            $group=$data['group'];
+            $data['tid']=session('user_id');
+            $data['time']=date("Y-m-d");
+            unset($data['group']);
+            $p->save($data);
+            db('groupwork')->where('pid',$pid)->delete();
+            foreach($group as $g1)
+            {
+
+               db('groupwork')->insert(['cid'=>$g1,'pid'=>$p['Id']]);
+            }
+            echo '<script>var index = parent.layer.getFrameIndex(window.name);parent.layer.msg("创建作业成功！");parent.layer.close(index);</script>';
+           }
+          }
+        $this->assign('g',$c);
         return view();
      }
       public function correct()
@@ -83,7 +151,8 @@ class Work extends Common
      function memlist(){
        $g=input('get.');
        $p=Model('Project')->get($g['pid']);
-       $p->file;
+       if($p->file)
+       {
        foreach ($p['file'] as $k=> $f) {
          $f->user->usergroup;
          $i=0;
@@ -95,10 +164,12 @@ class Work extends Common
          unset($f['user']);
          if($i!=0)$file[]=$f->ToArray();
        }
+       unset($p['file']);
+     }
       $p=$p->ToArray();
-      unset($p['file']);
+      
       // dump($p);
-       $this->assign('file',$file);
+       $this->assign('file',isset($file)?$file:0);
        $this->assign('p',$p);
        return view();
 
@@ -119,10 +190,5 @@ class Work extends Common
        $zip->close();
       return $filename;
      }
-     function z(){
-        $za = new \ZipArchive;
-    $za->open('2.zip',\ZipArchive::CREATE|\ZipArchive::OVERWRITE);
-    $za->addFile('uploads/20180427/010ccb2de785c16ce4bd57f06f7870d3.bmp','1.bmp');
-    $za->close();
-     }
+    
 }

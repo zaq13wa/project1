@@ -48,7 +48,7 @@
                                 <table class="am-table am-table-striped am-table-hover table-main">
                             <thead>
                                 <tr>
-                                    <th class="table-set">全选 <input type="checkbox" id='ac' onclick="c()"></th>
+                                    <th class="table-set">全选 <input type="checkbox" id='ac' onclick="check()"></th>
                                     <th class="table-title">编号</th>
                                     <th class="table-type am-hide-sm-only">姓名</th>
                                     <th class="table-type am-hide-sm-only">提交时间</th>
@@ -57,6 +57,7 @@
                             </thead>
                             
                             <tbody>
+                               {if isset($file)}
                                {volist name="file" id='f' key='k'}
                                 <tr >
                                 <td> <input id="c{$k}" type="checkbox"></td>
@@ -73,17 +74,19 @@
                                     </td>
                                 </tr>
                                 {/volist}
+                                {/if}
+
                                   </tbody>
                                 <script type="text/javascript">
                                 var j=0;
-                                  function c(){
+                                  function check(){
                                        var i=0;j++;
                                       // console.log(j);
                                        
                                        if(j%2!=0)
                                        {
                                             $("#ac").prop('checked',true);
-                                            for(i=0;i<={$k};i++)
+                                            for(i=0;i<={$k?:0};i++)
                                             {
                                               $('#c'+i).prop('checked',true);
                                             }
@@ -92,7 +95,7 @@
                                        {
                                         $("#ac").prop('checked',false);
 
-                                           for(i=0;i<={$k};i++)
+                                           for(i=0;i<={$k?:0};i++)
                                             {
                                               $('#c'+i).prop('checked',false);
                                             }
@@ -100,12 +103,12 @@
                                   }
                                   function down(){
                                     var s="";
-                                     for(i=0;i<={$k};i++)
+                                     for(i=0;i<={$k?:0};i++)
                                             {
                                              //
                                              if($('#c'+i).prop('checked'))
                                               {
-                                                if(i=={$k})s+=$('#a'+i).text();
+                                                if(i=={$k?:0})s+=$('#a'+i).text();
                                                 else s+=$('#a'+i).text()+",";
                                               }
                                               

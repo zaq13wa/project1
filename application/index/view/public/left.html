@@ -10,7 +10,13 @@
           <!-- {if $Request.session.class!=0}{else/} {/if} -->
               <li><a href="{:url('work/lis')}"> <i class="am-icon-angle-right"></i> <span>作业列表</span> </a></li>
               
-            <li><a href="{:url('work/create')}"> <i class="am-icon-angle-right"></i> <span>布置作业</span> </a></li>
+            <li><a href="javascript:;" onclick="create()"> <i class="am-icon-angle-right"></i> <span>布置作业</span> </a></li>
+            <script type="text/javascript">
+              function create()
+              {
+                layer.open({type: 2, title: '布置作业', shadeClose: true,shade: false, maxmin: true,  area: ['893px', '600px'], content: '{:url("work/create")}' });
+              }
+            </script>
               <li><a href="{:url('work/correct')}"> <i class="am-icon-angle-right"></i> <span>批改作业</span> </a></li>
              
           </ul>

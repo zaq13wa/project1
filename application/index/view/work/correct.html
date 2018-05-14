@@ -45,14 +45,6 @@
                     <div class="caption font-green bold">
                         作业列表
                     </div>
-                    <div class="tpl-portlet-input tpl-fz-ml">
-                        <div class="portlet-input input-small input-inline">
-                            <div class="input-icon right">
-                                <i class="am-icon-search"></i>
-                                <input type="text" class="form-control form-control-solid" placeholder="搜索..."> </div>
-                        </div>
-                    </div>
-
 
                 </div>
                 <div class="tpl-block ">
@@ -84,11 +76,9 @@
                                     <td>
                                         <div class="am-btn-toolbar">
                                             <div class="am-btn-group am-btn-group-xs xa-btn-group">
-                                               
-                                                 <a class="am-btn am-btn-default am-btn-xs am-text-firstary" href="javascript:;" onclick="gr({$l.Id})"><span class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right  tpl-left-nav-more-ico-rotate"></span> 查看</a>
-                                               
-                                               <!-- <a class="am-btn am-btn-default am-btn-xs am-text-secondary" href=""><span class="am-icon-download"></span> 下载</a>
-                                                <a class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</a>-->
+                                                 <a class="am-btn am-btn-default am-btn-xs am-text-secondary" href="javascript:;" onclick="edit({$l.Id})"><span class="am-icon-edit"></span> 编辑</a>
+                                                 <a class="am-btn " href="javascript:;" onclick="gr({$l.Id})"><span class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right  tpl-left-nav-more-ico-rotate"></span> 查看</a>
+                                                <!--<a class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</a>-->
                                             </div>
                                         </div>
                                     </td>
@@ -127,6 +117,10 @@
                                               function c(i,j)
                                               {
                                                      layer.open({type: 2, title: '作业下载', shadeClose: true,shade: false, maxmin: true,  area: ['893px', '600px'], content: '{:url("work/memlist")}?pid='+i+'&gid='+j });
+                                              }
+                                              function edit(i)
+                                              {
+                                                  layer.open({type: 2, title: '作业编辑', shadeClose: true,shade: false, maxmin: true,  area: ['893px', '600px'], content: '{:url("work/edit")}?pid='+i});
                                               }
                         </script>
                                 <div class="am-form-group" style="text-align: center;">

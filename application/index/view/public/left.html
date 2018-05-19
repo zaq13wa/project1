@@ -5,32 +5,37 @@
       <li class="tpl-left-nav-item"> <a href="{:url('index/index')}" class="nav-link active"> <i class="am-icon-home" style="width:23px"></i> <span>首页</span> </a> </li>
 
       
-         <li class="tpl-left-nav-item "> <a href="javascript:;" class="nav-link tpl-left-nav-link-list"> <i class="am-icon-pencil-square-o" style="width:23px"></i> <span>作业管理</span> <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right "></i> </a>
+         <li class="tpl-left-nav-item "> <a href="javascript:;" class="nav-link tpl-left-nav-link-list"> <i class="am-icon-pencil-square-o" style="width:23px"></i> <span>作业</span> <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right "></i> </a>
           <ul class="tpl-left-nav-sub-menu" style="display: block;">
-          <!-- {if $Request.session.class!=0}{else/} {/if} -->
-              <li><a href="{:url('work/lis')}"> <i class="am-icon-angle-right"></i> <span>作业列表</span> </a></li>
-              
+           {if $Request.session.class!=0}<li><a href="{:url('work/lis')}"> <i class="am-icon-angle-right"></i> <span>作业列表</span> </a></li>
+           {else/} 
             <li><a href="javascript:;" onclick="create()"> <i class="am-icon-angle-right"></i> <span>布置作业</span> </a></li>
-            <script type="text/javascript">
+              <li><a href="{:url('work/correct')}"> <i class="am-icon-angle-right"></i> <span>批改作业</span> </a></li>
+              {/if}
+             <script type="text/javascript">
               function create()
               {
                 layer.open({type: 2, title: '布置作业', shadeClose: true,shade: false, maxmin: true,  area: ['893px', '600px'], content: '{:url("work/create")}' });
               }
+              function chosec(){
+                    layer.open({type: 2, title: '选择班级', shadeClose: true,shade: false, maxmin: true,  area: ['800px', '600px'], content: '{:url("group/chose")}' });
+              }
+              function createc(){
+                    layer.open({type: 2, title: '创建班级', shadeClose: true,shade: false, maxmin: true,  area: ['893px', '600px'], content: '{:url("group/create")}' });
+              }
             </script>
-              <li><a href="{:url('work/correct')}"> <i class="am-icon-angle-right"></i> <span>批改作业</span> </a></li>
-             
           </ul>
         </li>
-        <li class="tpl-left-nav-item"> <a href="javascript:;" class="nav-link tpl-left-nav-link-list"> <i class="am-icon-newspaper-o" style="width:23px"></i> <span>班级列表</span> <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right "></i> </a>
+        <li class="tpl-left-nav-item"> <a href="javascript:;" class="nav-link tpl-left-nav-link-list"> <i class="am-icon-newspaper-o" style="width:23px"></i> <span>班级</span> <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right "></i> </a>
         <ul class="tpl-left-nav-sub-menu" style="display: block;">
-       <!--   {if $Request.session.class!=0} {else/}{/if} -->
-          <li><a href="{:url('group/chose')}"> <i class="am-icon-angle-right"></i> <span>选择班级</span> </a></li>
-         
-           <li><a href="{:url('group/create')}"> <i class="am-icon-angle-right"></i> <span>创建班级</span> </a></li>
-         
+         {if $Request.session.class!=0} 
+          <li><a href="javascript:;" onclick="chosec()"> <i class="am-icon-angle-right"></i> <span>选择班级</span> </a></li>
+         {else/}
+           <li><a href="javascript:;" onclick="createc()"> <i class="am-icon-angle-right"></i> <span>创建班级</span> </a></li>
+          {/if}
           </ul>
         </li> 
-        <li class="tpl-left-nav-item"> <a href="javascript:;" class="nav-link tpl-left-nav-link-list"> <i class="am-icon-user" style="width:23px"></i> <span>关于我们</span> <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right "></i> </a>
+        <li class="tpl-left-nav-item"> <a href="javascript:;" class="nav-link tpl-left-nav-link-list"> <i class="am-icon-user" style="width:23px"></i> <span>关于</span> <i class="am-icon-angle-right tpl-left-nav-more-ico am-fr am-margin-right "></i> </a>
           <ul class="tpl-left-nav-sub-menu" style="display: block;">
           <li> <a href="{:url('aboutus/aboutus1')}"> <i class="am-icon-angle-right"></i> <span>团队介绍</span> </a> </li>
           </ul>

@@ -22,35 +22,17 @@
 
 <body data-type="index">
 
-    <!--引用头部-->
-    {include file="public/top"} 
-   <!--/引用头部-->
-
    <div class="tpl-page-container tpl-page-header-fixed">
-    <!--引用侧边栏-->
-    {include file="public/left"} 
-    <!--/引用侧边栏-->
 
 
 
         <div class="tpl-content-wrapper">
-            <ol class="am-breadcrumb">
-                <li><a href="#" class="am-icon-pencil-square-o">用户中心</a></li>
-                
-            </ol>
             <div class="tpl-portlet-components">
                 <div class="portlet-title">
                     <div class="caption font-green bold">
-                        修改密码
+                        选择班级
                     </div>
-                    <div class="tpl-portlet-input tpl-fz-ml">
-                        <div class="portlet-input input-small input-inline">
-                            <div class="input-icon right">
-                                <i class="am-icon-search"></i>
-                                <input type="text" class="form-control form-control-solid" placeholder="搜索..."> </div>
-                        </div>
-                    </div>
-
+                  
 
                 </div>
                 <div class="tpl-block ">
@@ -59,44 +41,63 @@
 
 
                         <div class="am-u-sm-12 am-u-md-9">
-                            <form class="am-form am-form-horizontal" method="post">
+                            <div class="am-form am-form-horizontal" >
                                 <div class="am-form-group">
-                                    <label for="team-name" class="am-u-sm-3 am-form-label">原密码</label>
+                                    <label for="team-name" class="am-u-sm-3 am-form-label">选择老师</label>
                                     <div class="am-u-sm-9">
-                                        <input type="password" name="password1" id="password-name" placeholder="原密码">
-<!--                                        <small>输入你的名字，让我们记住你。</small>-->
+                                    {volist name="g" id="c"}
+                                    <a href="javascript:;" id="user{$c.user_id}" onclick="teach({$c.user_id})" class="btn btn-default am-radius">{$c.name}</a>
+                                    {/volist}
                                     </div>
                                 </div>
-                         
-                           
-                                <div class="am-form-group">
-                                    <label for="project-name" class="am-u-sm-3 am-form-label">新密码</label>
-                                    <div class="am-u-sm-9">
-                                       <input type="password" name="password2" id="password-name" placeholder="新密码 ">
-<!--                                        <small>输入你的名字，让我们记住你。</small>-->
+                                <script type="text/javascript"> 
+                                var c=new Array();
+                                    function teach(i){
+                                        var j=0;
+                                        var json=$.ajax({
+                                               type: "GET",
+                                               dataType: 'json',
+                                            url: "{:url('group/teacher')}?id="+i,
+                                            data: "",
+                                          timeout: 3000,
+                                           contentType: "application/json;utf-8",
+                                          success: function(msg) {
+                                                 $.each(msg,function(a,b){
+                                                    $('#d1').append('<a href="javascript:;" onclick="class1('+a+')" class="btn btn-default am-radius">'+a+'</a>');
+                                                    $('#d2').append("<div hidden='true' id='"+a+"'></div>");
+                                                      $.each(b,function(d,e){
+                                                  //  console.log(e);
+                                                    // console.log( Object.prototype.toString.call(e) === "[object String]");
+                                                    Object.prototype.toString.call(e) === "[object String]"?"": $('#'+a).append('<a href="{:url("group/cho")}?id='+e['Id']+'" class="btn btn-default am-radius" >'+e["name"]+'</a>');
+                                                    
+                                                  });
+                                                });
+                                            }
+                                        }); 
+                                       
+                                        $('#user'+i).attr('onclick',""); 
+                                    }
+
+                                    function class1(i)
+                                    {
+                                       $('#d2').children().each(function(){
+                                       $(this).attr("hidden",true);
+                                       });
+                                       $(i).attr("hidden",false);
+                                    }
+                                </script>
+                                 <div class="am-form-group">
+                                    <label for="team-name" class="am-u-sm-3 am-form-label">选择课程</label>
+                                    <div class="am-u-sm-9" id="d1">
+
                                     </div>
                                 </div>
-                                 <!-- <div class="am-form-group">
-                                    <label for="user-name" class="am-u-sm-3 am-form-label">确认密码</label>
-                                    <div class="am-u-sm-9">
-                                        <input type="password" name="password3" id="password-name" placeholder="确认密码 ">
+                                  <div class="am-form-group">
+                                    <label for="team-name"  class="am-u-sm-3 am-form-label">选择班级</label>
+                                    <div class="am-u-sm-9" id="d2">
                                     </div>
-                                </div> -->
-                               
-                                
-                              
-                                  
-                               
-
-                                
-
-        
-                                <div class="am-form-group" style="text-align: center;">
-                                 <br>
-                                 <button class="btn btn-default am-radius" type="submit">提交</button>
                                 </div>
-
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>

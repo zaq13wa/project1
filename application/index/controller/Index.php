@@ -10,6 +10,7 @@ class Index extends Common
      public function index()
      {
      	//$a= Model('Project')->get(1)->file[0]->project;
+
      	$u=Model('User')->get(session('user_id'));
      	unset($u['password']);
           if(!$u['groups']=$u->groupt)
@@ -34,6 +35,24 @@ class Index extends Common
           }
      	   unset($u['groupt']);
      //	dump($u->ToArray());die;
+          $u->usergroup;
+        $k=0;
+        foreach($u['usergroup'] as $g)
+        {
+            $g->group->groupwork;
+            foreach($g['group']['groupwork'] as $w)
+            {
+              if($k>2)break;
+                $list[$k]['teacher']=$g['group']->teacher['name'];
+              $list[$k]['group']=$g['group']['name'];
+              $list[$k]['project']=$w->project->ToArray();
+               $k++;
+
+            }
+            
+        }
+       //dump($list);die;
+        $this->assign('list',$list);
      	$this->assign('user',$u->ToArray());
         return view();
      }

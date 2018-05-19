@@ -70,14 +70,17 @@ class Work extends Common
       $p=Model('project')->get($pid);
        $u=Model('User')->get(session('user_id'));
         $u->groupt;
+        $p->groupwork;
+        foreach($p['groupwork'] as $gr)$gr->group;
         foreach($u['groupt'] as $g)
         {
            $g->course;
            $c[$g['course']['name']][]=$g->ToArray();
           $c[$g['course']['name']]['course']= $g['course']['name'];
         }
+       
         $u=$u->ToArray();
-       // dump($c);
+       // dump($p);
         if(request()->ispost())
           {
             $data=input('post.');
@@ -95,10 +98,12 @@ class Work extends Common
 
                db('groupwork')->insert(['cid'=>$g1,'pid'=>$p['Id']]);
             }
-            echo '<script>var index = parent.layer.getFrameIndex(window.name);parent.layer.msg("创建作业成功！");parent.layer.close(index);</script>';
+            echo '<script>var index = parent.layer.getFrameIndex(window.name);parent.layer.msg("编辑作业成功！");parent.layer.close(index);</script>';
            }
           }
+           $p=$p->Toarray();
         $this->assign('g',$c);
+        $this->assign('p',$p);
         return view();
      }
       public function correct()

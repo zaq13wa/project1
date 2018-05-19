@@ -3,7 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>浙江省大学生环境生态科技创新大赛</title>
 <meta name="description" content="这是一个 index 页面">
 <meta name="keywords" content="index">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,7 +33,7 @@
             <div class="tpl-portlet-components">
             <div class="portlet-title">
                     <div class="caption font-green bold">
-                        布置作业
+                        编辑作业
                     </div>
                 </div>
                 <div class="tpl-block ">
@@ -46,7 +45,7 @@
                              <div class="am-form-group">
                                     <label for="team-name" class="am-u-sm-3 am-form-label">作业题目</label>
                                     <div class="am-u-sm-9">
-                                        <input type="text" name="title">                                     
+                                        <input type="text" value="{$p.title}" name="title">                                     
                                     </div>
                                 </div>
                          
@@ -55,10 +54,15 @@
                                     <div class="am-u-sm-9">
                                             {volist name="g" id="c" key="k"}
                                                 <div id="cour{$k}" class="am-u-sm-4" style="border-style: dotted; border-width: 2px; border-color:rgb(128,100,120);border-radius:20px;">
-                                             {$c.course}<input  type="checkbox" onclick="choose({$k})"/></br>
+                                             {$c.course}<input  type="checkbox"  onclick="choose({$k})"/></br>
                                              <?php unset($c['course']);?>
                                              {volist name="c" id="c1"}
-                                             {$c1.name}<input name="group[]" type="checkbox" value ="{$c1.Id}"/></br>
+                                             {$c1.name}
+                                            
+                                             <input name="group[]" type="checkbox"  {volist name="p['groupwork']" id="g"}{if $g.cid==$c1.Id}checked="true"{/if}{/volist} 
+
+                                             value ="{$c1.Id}"/>
+                                             </br>
                                              {/volist}
                                             </div>
                                             {/volist}
@@ -77,9 +81,9 @@
                                   }
                                 </script>
                                 <div class="am-form-group">
-                                 <label for="team-name" class="am-u-sm-3 am-form-label">选择班级</label>
+                                 <label for="team-name" class="am-u-sm-3 am-form-label">作业内容</label>
                                       <div class="col-sm-9">
-                                           <textarea id="mes_contant" name="text"></textarea>
+                                           <textarea id="mes_contant" name="text">{$p.text}</textarea>
                                      </div>
                                 </div>
                           <script type="text/javascript">

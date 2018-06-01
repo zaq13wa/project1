@@ -40,18 +40,23 @@ class Index extends Common
         foreach($u['usergroup'] as $g)
         {
             $g->group->groupwork;
+            $g['group']->course;
             foreach($g['group']['groupwork'] as $w)
             {
-              if($k>2)break;
-                $list[$k]['teacher']=$g['group']->teacher['name'];
+              //if($k>2)break;
+              $w->project;
+              if(!db('file')->where('uid',session('user_id'))->where('pid',$w['project']['Id'])->find()&&time() < strtotime($w['project']['time']))
+               { $list[$k]['teacher']=$g['group']->teacher['name'];
               $list[$k]['group']=$g['group']['name'];
-              $list[$k]['project']=$w->project->ToArray();
+              $list[$k]['project']=$w['project']->ToArray();
+               $list[$k]['course']=$g['group']['course']['name'];
                $k++;
-
+              }
             }
             
         }
-       //dump($list);die;
+        isset($list)?:$list='';
+       //dump($u->ToArray());die;
         $this->assign('list',$list);
      	$this->assign('user',$u->ToArray());
         return view();

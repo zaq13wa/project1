@@ -15,11 +15,13 @@ class Work extends Common
         foreach($u['usergroup'] as $g)
         {
             $g->group->groupwork;
+            $g['group']->course;
             foreach($g['group']['groupwork'] as $w)
             {
                 $list[$k]['teacher']=$g['group']->teacher['name'];
               $list[$k]['group']=$g['group']['name'];
               $list[$k]['project']=$w->project->ToArray();
+              $list[$k]['course']=$g['group']['course']['name'];
                $k++;
             }
            
@@ -48,7 +50,6 @@ class Work extends Common
             else{
             $group=$data['group'];
             $data['tid']=session('user_id');
-            $data['time']=date("Y-m-d");
             unset($data['group']);
             // dump($group);die;
             $p=Model('project');
@@ -89,7 +90,6 @@ class Work extends Common
             else{
             $group=$data['group'];
             $data['tid']=session('user_id');
-            $data['time']=date("Y-m-d");
             unset($data['group']);
             $p->save($data);
             db('groupwork')->where('pid',$pid)->delete();

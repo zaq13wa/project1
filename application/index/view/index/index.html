@@ -30,19 +30,17 @@
     {include file="public/left"} 
     <!--/引用侧边栏-->
       <div class="tpl-content-wrapper">
-
+       {if $list!='' and $Request.session.class!=0}
         <div class="tpl-portlet-components">
           <div class="portlet-title">
             <div class="caption font-green bold">
-             <i class="am-icon-bell-o"></i>作业列表
+             <i class="am-icon-bell-o"></i>未提交作业
            </div>
            <div class="tpl-portlet-input tpl-fz-ml">
             <div class="portlet-input input-small input-inline">
 
             </div>
           </div>
-
-
         </div>
 
         <div class="tpl-block">
@@ -57,6 +55,7 @@
 
                                     <th class="table-title">编号</th>
                                     <th class="table-type am-hide-sm-only">作业题目</th>
+                                    <th class="table-type am-hide-sm-only">课程</th>
                                     <th class="table-type am-hide-sm-only">班级</th>
                                     <th class="table-type am-hide-sm-only">指导老师</th>
                                     <th class="table-date ">截止时间</th>
@@ -69,6 +68,7 @@
                                 <tr >
                                     <td class="">{$l.project.Id}</td>
                                     <td class="am-hide-sm-only" id="p{$l.project.Id}">{$l.project.title}</td>
+                                    <td>{$l.course}</td>
                                     <td class="">{$l.group}</td>
                                     <td >{$l.teacher}</td>
                                         <td >{$l.project.time}</td>
@@ -97,7 +97,7 @@
         </div>
 
       </div>
-
+    {/if}
       <div class="row">
         <div class="am-u-md-6 am-u-sm-12 row-mb">
           <div class="tpl-portlet">
@@ -154,6 +154,7 @@
                 <div class="actions">
                   <ul class="actions-btn">
                     <li class="purple-on">
+    }
 {if $Request.session.class!=0} 
           <a class="xa-index-group-a" href="javascript:;" onclick="chosec()">选择</a></li>
          {else/}

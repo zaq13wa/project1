@@ -48,14 +48,30 @@
                                         <input type="text" value="{$p.title}" name="title">                                     
                                     </div>
                                 </div>
-                         
+                         <div class="am-form-group">
+                                    <label for="team-name" class="am-u-sm-3 am-form-label">截止时间</label>
+                                    <div class="am-u-sm-9">
+                                        <input type="date" value="{$p.time}" name="time">                                     
+                                    </div>
+                                </div>
                                  <div class="am-form-group">
                                       <label for="team-name" class="am-u-sm-3 am-form-label">选择班级</label>
                                     <div class="am-u-sm-9">
+                                    <table class="am-table am-table-striped am-table-hover table-main">
+                                        <thead>
+                                <tr>
+                                <th class="table-type am-hide-sm-only">全选</th>
+                                    <th class="table-type am-hide-sm-only">课程</th>
+                                    <th class="table-type am-hide-sm-only">班级</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                                             {volist name="g" id="c" key="k"}
-                                                <div id="cour{$k}" class="am-u-sm-4" style="border-style: dotted; border-width: 2px; border-color:rgb(128,100,120);border-radius:20px;">
-                                             {$c.course}<input  type="checkbox"  onclick="choose({$k})"/></br>
+                                             <tr >
+                                             <td><input  type="checkbox"  onclick="choose({$k})"/></td>
+                                            <td><p class="caption font-green bold">{$c.course}</p></td>
                                              <?php unset($c['course']);?>
+                                             <td id="cour{$k}">
                                              {volist name="c" id="c1"}
                                              {$c1.name}
                                             
@@ -64,8 +80,11 @@
                                              value ="{$c1.Id}"/>
                                              </br>
                                              {/volist}
-                                            </div>
+                                            </td>
+                                            </tr>
                                             {/volist}
+                                            </tbody>
+                                            </table>
                                     </div>
                                 </div>
                                 <script type="text/javascript">

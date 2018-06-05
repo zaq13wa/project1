@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="这是一个 index 页面">
+<meta name="keywords" content="index">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="icon" type="image/png" href="__INDEX__//i/favicon.png">
+<link rel="apple-touch-icon-precomposed" href="__INDEX__//i/app-icon72x72@2x.png">
+<meta name="apple-mobile-web-app-title" content="Amaze UI" />
+<link rel="stylesheet" href="__INDEX__/css/bootstrap.css" />
+<link rel="stylesheet" href="__INDEX__/css/amazeui.min.css" />
+<link rel="stylesheet" href="__INDEX__/css/admin.css">
+<link rel="stylesheet" href="__INDEX__/css/app.css">
+<link rel="stylesheet" href="__INDEX__/font-awesome.css" >
+<script src="__INDEX__/js/echarts.min.js"></script>
+<script src="__INDEX__/js/jquery.min.js"></script>
+<script src="__INDEX__/layer/layer.js"></script>
+<style>  
+  /* bubble style */  
+        .sender{  
+            clear:both;  
+        }  
+        .sender div:nth-of-type(1){  
+            float: left;  
+        }  
+        .sender div:nth-of-type(2){  
+            background-color: aquamarine;  
+            float: left;  
+            margin: 0 20px 10px 15px;  
+            padding: 10px 10px 10px 0px;  
+            border-radius:7px;  
+        }  
+  
+        .receiver div:first-child img,  
+        .sender div:first-child img{  
+            width:50px;  
+            height: 50px;  
+        }  
+  
+        .receiver{  
+            clear:both;  
+        }  
+        .receiver div:nth-child(1){  
+            float: right;  
+        }  
+        .receiver div:nth-of-type(2){  
+            float:right;  
+            background-color: gold;  
+            margin: 0 10px 10px 20px;  
+            padding: 10px 0px 10px 10px;  
+            border-radius:7px;  
+        }  
+  
+        .left_triangle{  
+            height:0px;    
+            width:0px;    
+            border-width:8px;    
+            border-style:solid;    
+            border-color:transparent aquamarine transparent transparent;    
+            position: relative;  
+            left:-16px;  
+            top:3px;  
+        }  
+  
+        .right_triangle{  
+            height:0px;    
+            width:0px;    
+            border-width:8px;    
+            border-style:solid;    
+            border-color:transparent transparent transparent gold;    
+            position: relative;  
+            right:-16px;  
+            top:3px;  
+        }  
+  
+  </style> 
+</head>
+
+<body data-type="index" onload="window.scrollTo(0,document.body.scrollHeight); ">
+<div id="area">
+
+  <div class="sender">  
+      <div>  
+          <span class="am-icon-user am-icon-md am-user"></span>
+      </div>  
+  <div>  
+      <div class="left_triangle"></div>  
+      <span> hello, man! </span>  
+   </div>  
+  </div> 
+   <div class="sender">  
+      <div>  
+          <span class="am-icon-user am-icon-md am-user"></span>
+      </div>  
+  <div>  
+      <div class="left_triangle"></div>  
+      <span> hello, man! </span>  
+   </div>  
+  </div>
+   <div class="sender">  
+      <div>  
+          <span class="am-icon-user am-icon-md am-user"></span>
+      </div>  
+  <div>  
+      <div class="left_triangle"></div>  
+      <span> hello, man! </span>  
+   </div>  
+  </div>
+<!-- Right -->  
+  <div class="receiver">  
+      <div>  
+        <span class="am-icon-user am-icon-md am-user"></span>
+      </div>  
+   <div>  
+        <div class="right_triangle"></div>  
+        <span> hello world </span>  
+   </div>  
+  </div> 
+ <div class="receiver">  
+      <div>  
+        <span class="am-icon-user am-icon-md am-user"></span>
+      </div>  
+   <div>  
+        <div class="right_triangle"></div>  
+        <span> hello world </span>  
+   </div>  
+  </div> 
+
+</div>
+<div style="position: fixed;bottom:0px;left:0px;width:100%;height:35px; background:#eee" > 
+       
+       <div class="input-icon right" style="width: 68%" > 
+                                <i class="am-icon-send"> </i>
+                                <input type="text" id="send" class="form-control form-control-solid" placeholder="发送"> 
+                                </div>
+                                <select id="gro" style="width: 30%;position:relative;top:-30px;left: 190px"> 
+                                 {volist name="$g" id="g"}
+                                <option value ="{$g.Id}">{$g.name}-{$g.pid}</option>
+                                {/volist}
+                                </select>
+ </div>
+
+
+<script type="text/javascript">
+show();
+setInterval('show()',5000); 
+    $('#send').on('keypress',function(event){ 
+         if(event.keyCode == 13&&$('#send').val()!='') 
+         {  
+        var json=$.ajax({ type: "GET", dataType: 'json',
+                           url: "{:url('index/msgsend')}?gid="+$('#gro').val()+"&text="+$('#send').val(),
+                           data: "",
+                           timeout: 3000,
+                           contentType: "application/json;utf-8",
+                                          success: function(msg) {
+                                            //  console.log(msg);
+                                             
+                                          }
+                                        });
+        $('#send').val('');
+        show();
+         }  
+     });
+
+    $("select#gro").change(function(){
+          // console.log($(this).val());
+          show();
+ });
+    function show(){ 
+        var json=$.ajax({ type: "GET", dataType: 'json',
+                           url: "{:url('index/msgshow')}?gid="+$('#gro').val(),
+                           data: "",
+                           timeout: 3000,
+                           contentType: "application/json;utf-8",
+                                          success: function(msg) {
+                                            $('#area').empty();
+                                               $.each(msg,function(a,b){
+                                                  if(b['uid']=='{$Request.session.username}')
+                                                    s=  '<div class="receiver">  <div> '+b['uid']+'   <span class="am-icon-user am-icon-mdam-user"></span> </div>  <div>  <div class="right_triangle"></div>    <span> '+b['text']+' </span> </div>  </div> ';
+                                                  else
+                                                  s='<div class="sender">  <div>    <span class="am-icon-user am-icon-mdam-user">'+b['uid']+'</span> </div>  <div>  <div class="left_triangle"></div>    <span> '+b['text']+' </span> </div>  </div> ';
+                                                  $('#area').append(s); 
+                                               }); 
+                                               $('#area').append('</br></br></br></br>'); 
+                                               window.scrollTo(0,document.body.scrollHeight);
+                                          }
+                                        });
+    }
+</script>
+    <script  src="__INDEX__/js/distpicker.data.js"></script> 
+    <script  src="__INDEX__/js/distpicker.js"></script> 
+    <script src="__INDEX__/js/jquery.min.js"></script>
+    <script src="__INDEX__/js/amazeui.min.js"></script>
+    <script src="__INDEX__/js/app.js"></script>
+    <script src="__INDEX__/js/bootstrap.js"></script>   
+    <script src="__INDEX__/js/fileinput.js"></script>
+</body>
+
+</html>

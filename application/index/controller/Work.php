@@ -184,7 +184,7 @@ class Work extends Common
       $g=input('get.');
       $id=explode(',',$g['id']);
       $p=db('project')->where('Id',$g['pid'])->find();
-        $filename = $p['title'].".zip";
+        $filename = iconv("UTF-8", "GB2312//IGNORE", $p['title']) .".zip";
         $zip = new \ZipArchive;
         $zip->open($filename,\ZIPARCHIVE::CREATE|\ZIPARCHIVE::OVERWRITE);   //打开压缩包
         foreach ($id as $i) {
@@ -193,7 +193,7 @@ class Work extends Common
           $zip->addFile($path,basename($path));   
         }
        $zip->close();
-      return $filename;
+      return $p['title'].".zip";
      }
     
 }

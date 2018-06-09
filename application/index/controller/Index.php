@@ -93,7 +93,7 @@ class Index extends Common
      public function msgsend(){
          $data=input('get.');
          $data['uid']=session('user_id');
-         $data['time']=date('Y-m-d h:i:s');
+         $data['time']=date('Y-m-d H:i:s');
          dump($data);
          db('msg')->insert($data);
          return $data;

@@ -53,10 +53,10 @@
                   {if time() < strtotime($p['time'])}
                   {if $p.file==0}
                    <div class="am-u-sm-8">
-                     <input type="text" class="file" id="f_file" placeholder="请选择文件上传" width:72%>
+                     <input type="text" class="file" id="f_file" placeholder="请选择文件上传" style="width:72%">
                    </div>
-                   <div class="am-u-sm-4">
-                     <input type="button" class="btn btn-default am-radius " value="浏览文件" class="file" onClick="t_file.click()" >
+                   <div class="am-u-sm-4" style="position:relative;left:-150px;">
+                     <input type="button" class="btn btn-default am-radius "  value="浏览文件"  class="file" onClick="t_file.click()" >
 
                    </div>
                    {else/}

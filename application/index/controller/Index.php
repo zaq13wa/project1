@@ -9,8 +9,6 @@ class Index extends Common
 {
      public function index()
      {
-     	//$a= Model('Project')->get(1)->file[0]->project;
-
      	$u=Model('User')->get(session('user_id'));
      	unset($u['password']);
           if(!$u['groups']=$u->groupt)

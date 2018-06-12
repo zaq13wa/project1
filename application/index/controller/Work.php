@@ -166,13 +166,15 @@ class Work extends Common
                 $gr['gid']==$g['gid']?$i++:"";
          }
          $f['uid']=$f['user']['name'];
+         $f['stuid']=$f['user']['stuid'];
          unset($f['user']);
          if($i!=0)$file[]=$f->ToArray();
        }
        unset($p['file']);
      }
       $p=$p->ToArray();
-      
+      $p['g']=db('group')->where('Id',$g['gid'])->find();
+      $p['c']=db('group')->where('Id',$p['g']['pid'])->find();
       // dump($p);
        $this->assign('file',isset($file)?$file:0);
        $this->assign('p',$p);
@@ -189,8 +191,10 @@ class Work extends Common
         $zip->open($filename,\ZIPARCHIVE::CREATE|\ZIPARCHIVE::OVERWRITE);   //打开压缩包
         foreach ($id as $i) {
           $f=db('file')->where('Id',$i)->find();
+          $u=db('user')->where('user_id',$f['uid'])->find();
           $path = str_replace("public/" ,'',$f['thumb']);
-          $zip->addFile($path,basename($path));   
+          $na=explode(".", basename($path));
+          $zip->addFile($path,$u['stuid']."_".$u['name']."_".$p['title'].".".$na[1]);   
         }
        $zip->close();
       return $p['title'].".zip";

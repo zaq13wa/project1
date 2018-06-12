@@ -80,9 +80,9 @@
                  
                </div>
                 <input name='uid' type='hidden' value='{$p.uid}'>   <input name='pid' type='hidden' value='{$p.Id}'>
-               <div class="am-form-group" style="text-align: center;">
+               <div class="am-form-group" style="position:relative;left:375px;">
                                  <br>
-                                 <button class="btn btn-default am-radius" type="submit">提交</button>
+                               {if time() < strtotime($p['time'])}  <button class="btn btn-default am-radius" type="submit">提交</button>{/if}
                                 </div>
                             </form>
                           

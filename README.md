@@ -8,7 +8,7 @@
 [![License](https://poser.pugx.org/topthink/think/license)](https://packagist.org/packages/topthink/think)
 
 
-详细开发文档参考 [docx文件夹下文档]()
+详细开发文档参考 [docx文件夹下文档](https://github.com/zaq13wa/project1/tree/master/docs)
 
 ## 目录结构
 
@@ -62,10 +62,6 @@ application     采用MVC结构
 │        ├─memlist.html    
 │        └─upload.html
 ~~~
-
-> router.php用于php自带webserver支持，可用于快速测试
-> 切换到public目录后，启动命令：php -S localhost:8888  router.php
-> 上面的目录结构和名称是可以改变的，这取决于你的入口文件和配置参数。
 
 
 ### 数据表和字段

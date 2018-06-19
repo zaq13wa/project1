@@ -54,6 +54,8 @@
                                 var c=new Array();
                                     function teach(i){
                                         var j=0;
+                                        $('#d1').empty();
+                                        $('#d2').empty();
                                         var json=$.ajax({
                                                type: "GET",
                                                dataType: 'json',
@@ -75,7 +77,7 @@
                                             }
                                         }); 
                                        
-                                        $('#user'+i).attr('onclick',""); 
+                                        //$('#user'+i).attr('onclick',""); 
                                     }
 
                                     function class1(i)

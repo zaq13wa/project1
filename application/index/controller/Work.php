@@ -26,6 +26,7 @@ class Work extends Common
             }
            
         }
+        if(!isset($list))$this->error('未选择班级！');
        //dump($list);die;
         $this->assign('list',$list);
         return view();
@@ -61,6 +62,7 @@ class Work extends Common
             echo '<script>var index = parent.layer.getFrameIndex(window.name);parent.layer.msg("创建作业成功！");parent.layer.close(index);</script>';
            }
           }
+          if(!isset($c))echo '<script>var index = parent.layer.getFrameIndex(window.name);parent.layer.msg("请先创建班级！");parent.layer.close(index);</script>';
         $this->assign('g',$c);
         return view();
      }

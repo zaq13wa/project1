@@ -67,7 +67,11 @@
                                         <div class="am-btn-toolbar">
                                             <div class="am-btn-group am-btn-group-xs xa-btn-group">
                                                
-                                                <a class="am-btn am-btn-default am-btn-xs am-text-secondary" href="__IUrl__{$f.thumb}" download="{$f.stuid}_{$f.uid}_{$p.title}" ><span class="am-icon-download"></span> 下载</a>
+                                                <a class="am-btn am-btn-default am-btn-xs am-text-secondary" href="__IUrl__{$f.thumb}" download="{$f.stuid}_{$f.uid}_{$p.title}.<?php 
+                                                $path = str_replace('public/' ,'',$f['thumb']);
+                                                 $na=explode('.', basename($path));
+                                               echo  $na[1];
+                                                ?>" ><span class="am-icon-download"></span> 查看</a>
                                             </div>
                                         </div>
                                     </td>
